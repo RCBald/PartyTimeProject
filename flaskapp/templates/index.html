@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<div class="px-4 py-5 my-5 text-center">
+  <h2 class="display-4">PartyTime Events!</h2>
+  <p>Making your party the best it could be</p>
+  <img class="d-block mx-auto mb-4" src="{{url_for('static', filename='images/birthday-party.png')}}" alt="" width="500" height="500">
+  <div class="col-lg-6 mx-auto">
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <a href="{{url_for('events')}}"><button type="button" class="btn btn-primary btn-lg px-4 gap-3">See Events</button>
+        </a>
+        <a href="{{url_for('venues')}}"><button type="button" class="btn btn-primary btn-lg px-4 gap-3">See Venue</button>
+        </a>
+        <a href="{{url_for('people')}}"><button type="button" class="btn btn-primary btn-lg px-4 gap-3">See People</button>
+        </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

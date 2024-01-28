@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}People{% endblock %}
+
+{% block content %}
+<img class="img-fluid" src="{{ url_for('static', filename='images/birthday-party.png') }}">
+<h1 class="display-4">PartyTime People</h1>
+
+<table >
+    <thead align="center">
+        <tr>
+            <td><b>Name</b></td>
+            <td><b>Address</b></td>
+            <td><b>Email</b></td>
+            <td><b>Date of Birth</b></td>
+            <td><b>Phone</b></td>
+            <td><b>Role</b></td>
+        </tr>
+    <tbody>
+        {% for person in peoples %}
+        <tr align="center">
+            <td>{{person['person_name']}}</td>
+            <td>{{person['home_address']}}</td>
+            <td>{{person['email_address']}}</td>
+            <td>{{person['dob']}}</td>
+            <td>{{person['personal_phone']}}</td>
+            <td>{{person['role']}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+        
+    
+</table>
+<a href="{{url_for('add_people')}}"><button type="button" class="btn btn-primary btn-lg px-4 gap-3">Add a Person!</button>
+</a>
+
+{% endblock %}

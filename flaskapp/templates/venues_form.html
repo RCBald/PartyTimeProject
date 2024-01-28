@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}New Venue{% endblock %}
+
+{% block content %}
+
+{% if error %}
+<h3 class="text-danger">{{error}}</h3>
+{% endif %}
+
+<h1>Add a new Venue:</h1>
+
+<form action="{{url_for('add_venue')}}" method="post" name="add_venue">
+    <div>
+        <label for="venue_name">Name Of Venue: </label>
+        <input type="text" id="venue_name" name="venue_name" required>
+    </div>
+    <div>
+        <label for="venue_address">Address: </label>
+        <input type="text" id="venue_address" name="venue_address" required>
+    </div>
+    <div>
+        <label for="venue_phone">Phone: </label>
+        <input type="text" id="venue_phone" name="venue_phone" required>
+    </div>
+    <div>
+        <label for="venue_fee">Rental Fee: </label>
+        <input type="text" id="venue_fee" name="venue_fee" required>
+    </div>
+    <div>
+        <label for="venue_capacity">Capacity: </label>
+        <input type="text" id="venue_capacity" name="venue_capacity" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-lg px-4 gap-3">Submit</button>
+    <button type="reset" class="btn btn-secondary btn-lg px-4 gap-3">Reset</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}New Event{% endblock %}
+
+{% block content %}
+{% if error %}
+<h3 class="text-danger">{{error}}</h3>
+{% endif %}
+<h1>Add a new Event:</h1>
+
+<form action="{{url_for('add_event')}}" method="post" name="add_event">                          
+    <div>
+        <label for="event_name">Name Of Event: </label>
+        <input type="text" id="event_name" name="event_name" required>
+    </div>
+    <div>
+        <label for="event_venue">Venue: </label>
+        <select id="event_venue" name="event_venue" required>
+            {% for venue in venues %}
+                <option value="{{venue['venue_id']}}">{{venue['venue_name']}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="event_date">Date: </label>
+        <input type="date" id="event_date" name="event_date" required>
+    </div>
+    <div>
+        <label for="event_start_time">Start Time: </label>
+        <input type="time" id="event_start_time" name="event_start_time" required>
+    </div>
+    <div>
+        <label for="event_end_time">End Time: </label>
+        <input type="time" id="event_end_time" name="event_end_time" required>
+    </div>
+    <div>
+        <label for="event_max_attendees">Max Attendees: </label>
+        <input type="text" id="eventmax__attendees" name="event_max_attendees" required>
+    </div>
+    <div>
+        <label for="event_invitation">Invitation: </label>
+        <input type="text" id="event_invitation" name="event_invitation" required>
+    </div>
+    <div>
+        <label for="event_planner">PartyTime Planner: </label>
+        <input type="text" id="event_planner" name="event_planner" required>
+    </div>
+    <div>
+        <label for="event_rentals">Event Rental Items: </label>
+        <input type="text" id="event_rentals" name="event_rentals" required>
+    </div>
+    <div>
+        <label for="event_attendees"> Person ID attending (5, 6, or 8): </label>
+        <input type="text" id="event_attendees" name="event_attendees" required>
+    </div>
+    <div>
+        <label for="event_planner">Person ID for planner: </label>
+        <select id="event_planner" name="event_planner" required>
+            {% for planner in planners %}
+                <option value="{{planner['people_id']}}">{{planner['person_name']}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="event_host"> Host: </label>
+        <select id="event_host" name="event_host" required>
+            {% for host in hosts %}
+                <option value="{{host['people_id']}}"> {{host['person_name']}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="event_image">Image Path: </label>
+        <input type="text" id="event_image" name="event_image" required>
+    </div>
+    <div>
+        <label for="event_notes">Event Notes: </label>
+        <input type="text" id="event_notes" name="event_notes" required>
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg px-4 gap-3">Submit</button>
+    <button type="reset" class="btn btn-secondary btn-lg px-4 gap-3">Reset</button>
+    
+</form>
+
+{% endblock %}

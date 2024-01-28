@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}{{event['event_name']}}{% endblock %}
+
+{% block content %}
+
+
+<h1>{{event['event_name']}}</h1>
+    <img src="{{url_for('static', filename= event['image_path'])}}" alt="{{event['event_name']}}">
+    <ul>
+        <li><b>Location:</b> {{event['venue_id']}}</li>
+        <li><b>Date:</b> {{event['event_date']}}</li>
+        <li><b>Start Time:</b> {{event['start_time']}}</li>
+        <li><b>End Time:</b> {{event['end_time']}}</li>
+        <li><b>Maximum Attendees:</b> {{event['max_attendees']}}</li>
+        <li><b>Invitation:</b> {{event['invite']}}</li>
+        <li><b>Event Planner:</b> {{event['person_name']}}</li>
+        <li><b>PartyTime Rentals:</b> {{event['rental_items']}}</li>
+        <li><b>Event Notes:</b> {{event['party_notes']}}</li>
+    </ul>
+<a><button type="button" class="btn btn-primary btn-lg px-4 gap-3">Edit Event!</button>
+</a>
+<a><button type="button" style="background-color: red;" class="btn btn-secondary btn-lg px-4 gap-3">Delete Event!</button>
+
+    <h3 style="color:blue"> Attendees </h3>
+    {% if error %}
+    <h3 class="text-danger">{{error}}</h3>
+    {% endif %}
+    <table >
+        <thead align="center">
+            <tr>
+                <td><b>Name</b></td>
+                <td><b>Address</b></td>
+                <td><b>Email</b></td>
+                <td><b>Phone</b></td>
+                <td><b>DOB</b></td>
+                <td><b></b></td>
+            </tr>
+        <tbody>
+        {% for attendee in attendees %}
+            <tr align="center">
+                <td>{{attendee['person_name']}}</td>
+                <td>{{attendee['home_address']}}</td>
+                <td>{{attendee['email_address']}}</td>
+                <td>{{attendee['personal_phone']}}</td>
+                <td>{{attendee['dob']}}</td>
+                <td>
+                    <form method="post" action="{{ url_for('delete_attendee', event_id=event['event_id'], attendee_id=attendee['people_id']) }}">
+                        <button type="submit" style="background-color: red;" class="btn btn-secondary btn-lg px-4 gap-3">Delete Attendee!</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}   
+        </tbody>
+
+        <form action="{{ url_for('add_attendee', event_id=event['event_id']) }}" method="POST" name="add_attendee">
+            <label for="people_id">Add a attendee</label>
+            <select id="people_id" name="people_id">
+                {% for people in peoples %}
+                    <option value="{{people['people_id']}}"> {{people.person_name}}</option>
+                {% endfor %}
+            </select>
+        <button type="submit" class="btn btn-secondary btn-lg px-4 gap-3">Add Attendee</button>
+        </form>
+        
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}New Person{% endblock %}
+
+{% block content %}
+
+{% if error %}
+<h3 class="text-danger">{{error}}</h3>
+{% endif %}
+
+<h1>Add a new Person:</h1>
+
+<form action="{{url_for('add_people')}}" method="post" name="add_people">
+    <div>
+        <label for="person_name">Name Of Person: </label>
+        <input type="text" id="person_name" name="person_name" required>
+    </div>
+    <div>
+        <label for="person_address">Address: </label>
+        <input type="text" id="person_address" name="person_address" required>
+    </div>
+    <div>
+        <label for="person_email">Email: </label>
+        <input type="email" id="person_email" name="person_email" required>
+    </div>
+    <div>
+        <label for="person_phone">Phone Number: </label>
+        <input type="text" id="person_phone" name="person_phone" required>
+    </div>
+    <div>
+        <label for="person_dob">Date Of Birth: </label>
+        <input type="date" id="person_dob" name="person_dob" required>
+    </div>
+    <div>
+        <label for="person_role">Person Role(Host, Attendee, Planner): </label>
+        <input type="text" id="person_role" name="person_role" required>
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg px-4 gap-3">Submit</button>
+    <button type="reset" class="btn btn-secondary btn-lg px-4 gap-3">Reset</button>
+</form>
+
+{% endblock %}
